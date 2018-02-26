@@ -8,9 +8,10 @@ class Square:
 	dim = (0,0)
 	height = 0
 	visible = True
-	
+	winning_position = (0,0)
 	def __init__(self, x, y, label, w, h, color, font):
 		self.position = (x,y)
+		self.winning_position = (x,y)
 		self.dim = (w,h)
 		self.color = color
 		self.font = font
@@ -37,3 +38,19 @@ class Square:
 			(fx,fy) = (x + (w - fwidth)/2,y + (h - fheight)/2)
 			screen.blit(f,(fx,fy))
 		return draw
+
+	def square_locater(self, pos):
+		(x1, y1) = self.position
+		(w, h) = self.dim
+		(x, y) = (x1 * w, y1 * h)
+		if pos[0] >= x and pos[1] >= y and pos[0] <= x + w and pos[1]<= y+h:
+			return True
+		else:
+			return False
+
+	def right_spot(self):
+		if self.position == winning_position:
+			return True
+		else:
+			return False
+

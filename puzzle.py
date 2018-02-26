@@ -30,7 +30,8 @@ def main():
 			position = j*rows + i
 			color = colors[position]
 			puzzle.append(Square(i,j,str(position+1),w,h,color,font))
-	
+	puzzle[15].visible=False
+	magic_block = puzzle[15]
 	while True:
 		clock.tick(FPS)
 
@@ -41,6 +42,12 @@ def main():
 				sys.exit(0)
 			if event.type == pygame.MOUSEBUTTONUP:
 				pos = pygame.mouse.get_pos()
+				for p in puzzle:
+					if p.square_locater(pos) == True:
+						if p.check_proximity(magic_block.position):
+							new_spot= p.position
+							p.position=magic_block.position
+							magic_block.position= new_spot
 
 		for p in puzzle:
 			p.draw_square(pygame.draw,screen)		
