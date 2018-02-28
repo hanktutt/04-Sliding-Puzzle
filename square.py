@@ -49,7 +49,7 @@ class Square:
 			return False
 
 	def right_spot(self):
-		if self.position == winning_position:
+		if self.position == self.winning_position:
 			return True
 		else:
 			return False
